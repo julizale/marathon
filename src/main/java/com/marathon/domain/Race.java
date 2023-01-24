@@ -6,18 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity(name = "TEAMS")
-public class Team {
+@Entity(name = "RACES")
+public class Race {
 
     @Id
-    @NotNull
     @GeneratedValue
+    @NotNull
     @Column(name = "ID")
     private long id;
 
@@ -25,11 +26,19 @@ public class Team {
     @Column(name = "NAME")
     private String name;
 
+    @NotNull
+    @Column(name = "DISTANCE")
+    private long distance;
+
+    @NotNull
+    @Column(name = "PRICE")
+    private BigDecimal price;
+
     @OneToMany(
-            targetEntity = User.class,
+            targetEntity = Performance.class,
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "team"
+            mappedBy = "race"
     )
-    private List<User> userList;
+    private List<Performance> performanceList = new ArrayList<>();
 }
