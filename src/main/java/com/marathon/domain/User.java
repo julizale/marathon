@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -49,4 +50,12 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Performance performance;
+
+    @OneToMany(
+            targetEntity = Activity.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user"
+    )
+    private List<Activity> activityList;
 }
