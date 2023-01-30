@@ -20,7 +20,9 @@ public class Performance {
     @Column(name = "ID")
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
     @JoinColumn(name = "USER_ID")
     private User user;
 
