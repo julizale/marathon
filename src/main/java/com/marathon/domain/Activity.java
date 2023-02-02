@@ -21,7 +21,6 @@ public class Activity {
     @Column(name = "ID")
     private long id;
 
-    @NotNull
     @Column(name = "DATE_TIME")
     private LocalDateTime dateTime;
 

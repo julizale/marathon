@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'mysql:mysql-connector-java:8.0.21'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.28'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     runtimeOnly('com.h2database:h2')
     annotationProcessor 'org.projectlombok:lombok'
