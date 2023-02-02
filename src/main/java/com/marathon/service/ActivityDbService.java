@@ -17,7 +17,7 @@ public class ActivityDbService {
         return activityRepository.save(activity);
     }
 
-    public List<Activity> getActivitiesByUserId(final long userId) {
+    public List<Activity> getActivitiesByUser(final long userId) {
         return activityRepository.findAll().stream()
                 .filter(activity -> activity.getUser().getId() == userId)
                 .toList();
