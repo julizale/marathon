@@ -21,7 +21,6 @@ public class Team {
     @Column(name = "ID")
     private long id;
 
-    @NotNull
     @Column(name = "NAME")
     private String name;
 
