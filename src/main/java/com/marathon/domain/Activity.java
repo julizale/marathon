@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -19,7 +18,7 @@ public class Activity {
     @NotNull
     @GeneratedValue
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @Column(name = "DATE_TIME")
     private LocalDateTime dateTime;

@@ -22,4 +22,8 @@ public class ActivityDbService {
                 .filter(activity -> activity.getUser().getId() == userId)
                 .toList();
     }
+
+    public List<Activity> getAllActivities() {
+        return activityRepository.findAll();
+    }
 }

@@ -6,6 +6,8 @@ import com.marathon.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TeamDbService {
 
@@ -18,5 +20,9 @@ public class TeamDbService {
 
     public Team getTeam(long id) throws TeamNotFoundException {
         return teamRepository.findById(id).orElseThrow(TeamNotFoundException::new);
+    }
+
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
     }
 }

@@ -1,20 +1,19 @@
 package com.marathon.service;
 
-import com.marathon.domain.Team;
+import com.marathon.domain.Sex;
 import com.marathon.domain.User;
 import com.marathon.exception.UserNotFoundException;
 import com.marathon.repository.UserRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @Transactional
 @SpringBootTest
@@ -37,4 +36,24 @@ class UserDbServiceTest {
         //Then
         assertEquals(id, retrievedUser.getId());
     }
+
+    @Test
+    void testCreateUserAdmin() {
+        //Given
+        User admin = User.builder()
+                .email("julizale@protonmail.com")
+                .birthDate(LocalDate.of(2001, 01, 01))
+                .firstName("Julian")
+                .lastName("Załęski")
+                .sex(Sex.MALE)
+                .city("Częstochowa")
+                .build();
+
+        //When
+        dbService.save(admin);
+
+        //Then
+
+    }
 }
+

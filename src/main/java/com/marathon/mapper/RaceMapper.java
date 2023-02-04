@@ -2,11 +2,10 @@ package com.marathon.mapper;
 
 import com.marathon.domain.Race;
 import com.marathon.domain.dto.RaceDto;
-import com.marathon.repository.RaceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RaceMapper {
@@ -28,5 +27,11 @@ public class RaceMapper {
                 race.getDistance(),
                 race.getPrice()
         );
+    }
+
+    public List<RaceDto> mapToRaceDtoList (List<Race> races) {
+        return races.stream()
+                .map(this::mapToRaceDto)
+                .toList();
     }
 }

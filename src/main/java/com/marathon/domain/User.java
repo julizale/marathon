@@ -1,17 +1,19 @@
 package com.marathon.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Entity(name = "USERS")
 public class User {
 
@@ -19,25 +21,20 @@ public class User {
     @NotNull
     @GeneratedValue
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
-    @NotNull
     @Column(name = "EMAIL")
     private String email;
 
-    @NotNull
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @NotNull
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @NotNull
     @Column(name = "BIRTHDATE")
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    @NotNull
     @Column(name = "SEX")
     private Sex sex;
 

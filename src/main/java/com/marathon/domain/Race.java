@@ -20,7 +20,7 @@ public class Race {
     @GeneratedValue
     @NotNull
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @NotNull
     @Column(name = "NAME")

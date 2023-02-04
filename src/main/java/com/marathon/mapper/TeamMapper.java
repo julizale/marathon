@@ -5,6 +5,7 @@ import com.marathon.domain.dto.TeamDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TeamMapper {
@@ -19,5 +20,11 @@ public class TeamMapper {
 
     public TeamDto mapToTeamDto(Team team) {
         return new TeamDto(team.getId(), team.getName());
+    }
+
+    public List<TeamDto> mapToTeamDtoList(List<Team> teams) {
+        return teams.stream()
+                .map(this::mapToTeamDto)
+                .toList();
     }
 }

@@ -18,7 +18,7 @@ public class Performance {
     @NotNull
     @GeneratedValue
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER

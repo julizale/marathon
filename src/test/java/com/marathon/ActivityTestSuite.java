@@ -51,7 +51,7 @@ public class ActivityTestSuite {
         assertNotEquals(0, id);
 
         //CleanUp
-        activityRepository.deleteById(id);
+        //activityRepository.deleteById(id);
     }
 
     @Test

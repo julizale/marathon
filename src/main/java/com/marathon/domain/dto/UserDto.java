@@ -4,6 +4,7 @@ import com.marathon.domain.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -14,7 +15,7 @@ public class UserDto {
     private String email;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Sex sex;
     private String city;
     private long teamId;
