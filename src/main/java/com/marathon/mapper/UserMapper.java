@@ -1,5 +1,6 @@
 package com.marathon.mapper;
 
+import com.marathon.domain.Performance;
 import com.marathon.domain.Team;
 import com.marathon.domain.User;
 import com.marathon.domain.dto.UserDto;
@@ -37,17 +38,18 @@ public class UserMapper {
     }
 
     public UserDto mapToUserDto(User user) {
-        return new UserDto(
+        UserDto userDto = new UserDto(
                 user.getId(),
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getBirthDate(),
                 user.getSex(),
-                user.getCity(),
-                user.getTeam().getId(),
-                user.getPerformance().getId()
+                user.getCity()
         );
+        ofNullable(user.getPerformance()).ifPresent(performance -> userDto.setPerformanceId(performance.getId()));
+        ofNullable(user.getTeam()).ifPresent(team -> userDto.setTeamId(team.getId()));
+        return userDto;
     }
 
     public List<UserDto> mapToUserDtoList(List<User> users) {
