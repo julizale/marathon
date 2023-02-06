@@ -1,7 +1,5 @@
 package com.marathon.mapper;
 
-import com.marathon.domain.Performance;
-import com.marathon.domain.Team;
 import com.marathon.domain.User;
 import com.marathon.domain.dto.UserDto;
 import com.marathon.repository.PerformanceRepository;
@@ -29,6 +27,7 @@ public class UserMapper {
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getBirthDate(),
+                userDto.getPassword(),
                 userDto.getSex(),
                 userDto.getCity(),
                 teamRepository.findById(userDto.getTeamId()).orElse(null),
@@ -45,7 +44,8 @@ public class UserMapper {
                 user.getLastName(),
                 user.getBirthDate(),
                 user.getSex(),
-                user.getCity()
+                user.getCity(),
+                user.getPassword()
         );
         ofNullable(user.getPerformance()).ifPresent(performance -> userDto.setPerformanceId(performance.getId()));
         ofNullable(user.getTeam()).ifPresent(team -> userDto.setTeamId(team.getId()));

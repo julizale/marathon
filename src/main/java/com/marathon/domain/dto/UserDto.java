@@ -3,12 +3,12 @@ package com.marathon.domain.dto;
 import com.marathon.domain.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class UserDto {
 
@@ -19,10 +19,12 @@ public class UserDto {
     private LocalDate birthDate;
     private Sex sex;
     private String city;
+    private String password;
     private long teamId;
     private long performanceId;
 
-    public UserDto(long id, String email, String firstName, String lastName, LocalDate birthDate, Sex sex, String city) {
+    public UserDto(long id, String email, String firstName, String lastName, LocalDate birthDate,
+                   Sex sex, String city, String password) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -31,4 +33,5 @@ public class UserDto {
         this.sex = sex;
         this.city = city;
     }
+
 }

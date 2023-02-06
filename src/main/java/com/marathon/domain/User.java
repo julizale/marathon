@@ -35,6 +35,9 @@ public class User {
     @Column(name = "BIRTHDATE")
     private LocalDate birthDate;
 
+    @Column(name = "PASSWORD")
+    private String password;
+
     @Column(name = "SEX")
     private Sex sex;
 
