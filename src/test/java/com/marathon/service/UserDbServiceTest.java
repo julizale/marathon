@@ -1,5 +1,6 @@
 package com.marathon.service;
 
+import com.marathon.domain.Performance;
 import com.marathon.domain.Sex;
 import com.marathon.domain.User;
 import com.marathon.exception.UserNotFoundException;
@@ -10,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class UserDbServiceTest {
 
-    UserRepository repository;
     @Autowired
     UserDbService dbService;
 
@@ -36,6 +34,31 @@ class UserDbServiceTest {
         //Then
         assertEquals(id, retrievedUser.getId());
     }
+
+    @Test
+    void testSaveUserWithIdPresent() throws UserNotFoundException {
+        //Given
+        User user = new User();
+        dbService.save(user);
+        long id = user.getId();
+
+        //When
+        user.setCity("New city");
+        Performance performance = new Performance();
+        user.setPerformance(performance);
+        performance.setUser(user);
+
+        dbService.save(user);
+        User retrievedUser = dbService.getUser(id);
+
+        //Then
+        assertEquals(retrievedUser, user);
+        assertEquals(performance, user.getPerformance());
+
+        //CleanUp
+        dbService.deleteUser(id);
+    }
+
 
     @Test
     void testCreateUserAdmin() {

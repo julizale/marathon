@@ -2,6 +2,7 @@ package com.marathon.controller;
 
 import com.marathon.domain.Race;
 import com.marathon.domain.dto.RaceDto;
+import com.marathon.exception.RaceNotFoundException;
 import com.marathon.mapper.RaceMapper;
 import com.marathon.service.RaceDbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class RaceController {
     @GetMapping
     public ResponseEntity<List<RaceDto>> getAllRaces () {
         return ResponseEntity.ok(raceMapper.mapToRaceDtoList(raceDbService.getAllRaces()));
+    }
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity<RaceDto> getRace (@PathVariable long id) throws RaceNotFoundException {
+        return ResponseEntity.ok(raceMapper.mapToRaceDto(raceDbService.getRace(id)));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

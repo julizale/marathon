@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/performance")
 public class PerformanceController {
@@ -17,6 +19,12 @@ public class PerformanceController {
     private PerformanceDbService performanceDbService;
     @Autowired
     private PerformanceMapper performanceMapper;
+
+    @GetMapping
+    public ResponseEntity<List<PerformanceDto>> getAllPerformances () {
+        List<PerformanceDto> performanceDtos = performanceMapper.mapToPerformanceDtoList(performanceDbService.getAllPerformances());
+        return ResponseEntity.ok(performanceDtos);
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Long> addPerformance (@RequestBody PerformanceDto performanceDto) throws Exception {
@@ -29,6 +37,12 @@ public class PerformanceController {
     public ResponseEntity<Void> updatePerformance (@RequestBody PerformanceDto performanceDto) throws Exception {
         Performance performance = performanceMapper.mapToPerformance(performanceDto);
         performanceDbService.save(performance);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> deletePerformance(@PathVariable Long id) {
+        performanceDbService.deletePerformance(id);
         return ResponseEntity.ok().build();
     }
 

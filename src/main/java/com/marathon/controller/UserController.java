@@ -2,6 +2,8 @@ package com.marathon.controller;
 
 import com.marathon.domain.User;
 import com.marathon.domain.dto.UserDto;
+import com.marathon.exception.UserNotFoundException;
+import com.marathon.exception.UserWithGivenEmailExistsException;
 import com.marathon.mapper.UserMapper;
 import com.marathon.service.UserDbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,21 @@ public class UserController {
         return ResponseEntity.ok(userDtos);
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<UserDto> getUser(@PathVariable long id) throws UserNotFoundException {
+        UserDto userDto = userMapper.mapToUserDto(userDbService.getUser(id));
+        return ResponseEntity.ok(userDto);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> addUser (@RequestBody UserDto userDto) {
+    public ResponseEntity<Long> addUser (@RequestBody UserDto userDto) throws UserWithGivenEmailExistsException {
         User user = userMapper.mapToUser(userDto);
         userDbService.save(user);
         return ResponseEntity.ok(user.getId());
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateUser (@RequestBody UserDto userDto) {
+    public ResponseEntity<Void> updateUser (@RequestBody UserDto userDto) throws UserWithGivenEmailExistsException {
         User user = userMapper.mapToUser(userDto);
         userDbService.save(user);
         return ResponseEntity.ok().build();

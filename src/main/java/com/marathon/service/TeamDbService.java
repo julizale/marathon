@@ -25,4 +25,8 @@ public class TeamDbService {
     public List<Team> getAllTeams() {
         return teamRepository.findAll();
     }
+
+    public void deleteTeam(Long id) {
+        teamRepository.deleteById(id);
+    }
 }

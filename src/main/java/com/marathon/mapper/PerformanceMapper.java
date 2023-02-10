@@ -9,6 +9,8 @@ import com.marathon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PerformanceMapper {
 
@@ -41,5 +43,11 @@ public class PerformanceMapper {
                 performance.getTimeGross(),
                 performance.getTimeNet()
         );
+    }
+
+    public List<PerformanceDto> mapToPerformanceDtoList(List<Performance> performances) {
+        return performances.stream()
+                .map(this::mapToPerformanceDto)
+                .toList();
     }
 }

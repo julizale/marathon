@@ -15,7 +15,7 @@ public class RaceDbService {
     private RaceRepository raceRepository;
 
     public Race save(Race race) {
-        return save(race);
+        return raceRepository.save(race);
     }
 
     public Race getRace(final long raceId) throws RaceNotFoundException {
@@ -24,5 +24,9 @@ public class RaceDbService {
 
     public List<Race> getAllRaces() {
         return raceRepository.findAll();
+    }
+
+    public void deleteRace(Long id) {
+        raceRepository.deleteById(id);
     }
 }

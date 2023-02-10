@@ -32,6 +32,7 @@ public class UserDto {
         this.birthDate = birthDate;
         this.sex = sex;
         this.city = city;
+        this.password = password;
     }
 
 }
