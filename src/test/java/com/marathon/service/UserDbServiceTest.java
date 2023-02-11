@@ -1,16 +1,11 @@
 package com.marathon.service;
 
 import com.marathon.domain.Performance;
-import com.marathon.domain.Sex;
 import com.marathon.domain.User;
-import com.marathon.exception.UserNotFoundException;
-import com.marathon.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,7 +17,7 @@ class UserDbServiceTest {
     UserDbService dbService;
 
     @Test
-    void testDbServiceSave() throws UserNotFoundException {
+    void testDbServiceSave() throws Exception {
         //Given
         User user = new User();
 
@@ -36,7 +31,7 @@ class UserDbServiceTest {
     }
 
     @Test
-    void testSaveUserWithIdPresent() throws UserNotFoundException {
+    void testSaveUserWithIdPresent() throws Exception {
         //Given
         User user = new User();
         dbService.save(user);
@@ -60,23 +55,5 @@ class UserDbServiceTest {
     }
 
 
-    @Test
-    void testCreateUserAdmin() {
-        //Given
-        User admin = User.builder()
-                .email("julizale@protonmail.com")
-                .birthDate(LocalDate.of(2001, 01, 01))
-                .firstName("Julian")
-                .lastName("Załęski")
-                .sex(Sex.MALE)
-                .city("Częstochowa")
-                .build();
-
-        //When
-        dbService.save(admin);
-
-        //Then
-
-    }
 }
 

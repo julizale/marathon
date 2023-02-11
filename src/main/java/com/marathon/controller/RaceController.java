@@ -44,4 +44,10 @@ public class RaceController {
         raceDbService.save(race);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> deleteRace(@PathVariable Long id) {
+        raceDbService.deleteRace(id);
+        return ResponseEntity.ok().build();
+    }
 }
