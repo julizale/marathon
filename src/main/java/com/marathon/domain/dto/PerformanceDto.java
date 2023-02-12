@@ -1,6 +1,6 @@
 package com.marathon.domain.dto;
 
-import com.marathon.domain.StartStatus;
+import com.marathon.domain.enumerated.StartStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

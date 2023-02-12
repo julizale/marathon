@@ -16,7 +16,7 @@ public class UserDbService {
     private UserRepository userRepository;
 
     public User save(User user) throws UserWithGivenEmailExistsException {
-        if (user.getId() == 0 && getAllUsers().stream().anyMatch(u -> u.getEmail().equals(user.getEmail()))) {
+        if (user.getId() != null && user.getId() == 0 && getAllUsers().stream().anyMatch(u -> u.getEmail().equals(user.getEmail()))) {
             throw new UserWithGivenEmailExistsException();
         }
         return userRepository.save(user);
@@ -24,10 +24,6 @@ public class UserDbService {
 
     public User getUser(long id) throws UserNotFoundException {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-    }
-
-    public User getUserByEmail(String email) throws UserNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
     }
 
     public List<User> getAllUsers() {

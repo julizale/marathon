@@ -35,17 +35,17 @@ public class UserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> addUser (@RequestBody UserDto userDto) throws UserWithGivenEmailExistsException {
-        User user = userMapper.mapToUser(userDto);
-        userDbService.save(user);
-        return ResponseEntity.ok(user.getId());
-    }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateUser (@RequestBody UserDto userDto) throws UserWithGivenEmailExistsException {
+    public ResponseEntity<Void> addUser (@RequestBody UserDto userDto) throws UserWithGivenEmailExistsException {
         User user = userMapper.mapToUser(userDto);
         userDbService.save(user);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserDto> updateUser (@RequestBody UserDto userDto) throws UserWithGivenEmailExistsException {
+        User user = userMapper.mapToUser(userDto);
+        User updatedUser = userDbService.save(user);
+        return ResponseEntity.ok(userMapper.mapToUserDto(updatedUser));
     }
 
     @DeleteMapping(value = "{userId}")

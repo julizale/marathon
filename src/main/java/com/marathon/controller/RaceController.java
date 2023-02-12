@@ -32,17 +32,17 @@ public class RaceController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> addRace (@RequestBody RaceDto raceDto) {
-        Race race = raceMapper.mapToRace(raceDto);
-        raceDbService.save(race);
-        return ResponseEntity.ok(race.getId());
-    }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateRace (@RequestBody RaceDto raceDto) {
+    public ResponseEntity<Void> addRace (@RequestBody RaceDto raceDto) {
         Race race = raceMapper.mapToRace(raceDto);
         raceDbService.save(race);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RaceDto> updateRace (@RequestBody RaceDto raceDto) {
+        Race race = raceMapper.mapToRace(raceDto);
+        Race updatedRace = raceDbService.save(race);
+        return ResponseEntity.ok(raceMapper.mapToRaceDto(updatedRace));
     }
 
     @DeleteMapping(value = "{id}")

@@ -1,5 +1,6 @@
 package com.marathon.domain;
 
+import com.marathon.domain.enumerated.StartStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

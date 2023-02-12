@@ -29,16 +29,8 @@ public class PerformanceDbService {
         return performanceRepository.save(performance);
     }
 
-    public Performance getPerformanceByUser(final long userId) throws PerformanceNotFoundException {
-        return performanceRepository.findAll().stream()
-                .filter(performance -> performance.getUser().getId() == userId)
-                .findAny().orElseThrow(PerformanceNotFoundException::new);
-    }
-
-    public List<Performance> getPerformancesByRace(final long raceId) {
-        return performanceRepository.findAll().stream()
-                .filter(performance -> performance.getRace().getId() == raceId)
-                .toList();
+    public Performance getPerformance(long id) throws PerformanceNotFoundException {
+        return performanceRepository.findById(id).orElseThrow(PerformanceNotFoundException::new);
     }
 
     public List<Performance> getAllPerformances() {
@@ -48,4 +40,5 @@ public class PerformanceDbService {
     public void deletePerformance(long id) {
         performanceRepository.deleteById(id);
     }
+
 }

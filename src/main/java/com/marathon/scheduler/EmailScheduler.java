@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -22,16 +23,15 @@ public class EmailScheduler {
     private final RaceRepository raceRepository;
     private AdminConfig adminConfig;
 
-
     @Scheduled(cron = "0 0 8 * * *")
     public void sendInformationEmail() {
         StringBuilder message = new StringBuilder("Currently in database, there are: \n");
         List<Race> raceList = raceRepository.findAll();
         for (Race race : raceList) {
             long runners = performanceRepository.findAll().stream()
-                    .filter(p -> p.getRace().getId() == race.getId())
+                    .filter(p -> Objects.equals(p.getRace().getId(), race.getId()))
                     .count();
-            message.append(runners + " runners taking part in " + race.getName() + ".\n");
+            message.append(runners).append(" runners taking part in ").append(race.getName()).append(".\n");
         }
         simpleEmailService.send(
                 new Mail(

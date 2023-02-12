@@ -2,6 +2,7 @@ package com.marathon.controller;
 
 import com.marathon.domain.Performance;
 import com.marathon.domain.dto.PerformanceDto;
+import com.marathon.exception.PerformanceNotFoundException;
 import com.marathon.mapper.PerformanceMapper;
 import com.marathon.service.PerformanceDbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,24 @@ public class PerformanceController {
         return ResponseEntity.ok(performanceDtos);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> addPerformance (@RequestBody PerformanceDto performanceDto) throws Exception {
-        Performance performance = performanceMapper.mapToPerformance(performanceDto);
-        performanceDbService.save(performance);
-        return ResponseEntity.ok(performance.getId());
+    @GetMapping(value = "{id}")
+    public ResponseEntity<PerformanceDto> getPerformance(@PathVariable long id) throws PerformanceNotFoundException {
+        PerformanceDto performanceDto = performanceMapper.mapToPerformanceDto(performanceDbService.getPerformance(id));
+        return ResponseEntity.ok(performanceDto);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updatePerformance (@RequestBody PerformanceDto performanceDto) throws Exception {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> addPerformance (@RequestBody PerformanceDto performanceDto) throws Exception {
         Performance performance = performanceMapper.mapToPerformance(performanceDto);
         performanceDbService.save(performance);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PerformanceDto> updatePerformance (@RequestBody PerformanceDto performanceDto) throws Exception {
+        Performance performance = performanceMapper.mapToPerformance(performanceDto);
+        Performance updatedPerformance = performanceDbService.save(performance);
+        return ResponseEntity.ok(performanceMapper.mapToPerformanceDto(updatedPerformance));
     }
 
     @DeleteMapping(value = "{id}")

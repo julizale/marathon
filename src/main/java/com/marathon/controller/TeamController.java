@@ -35,17 +35,17 @@ public class TeamController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> addTeam (@RequestBody TeamDto teamDto) {
-        Team team = teamMapper.mapToTeam(teamDto);
-        teamDbService.save(team);
-        return ResponseEntity.ok(team.getId());
-    }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateTeam (@RequestBody TeamDto teamDto) {
+    public ResponseEntity<Void> addTeam (@RequestBody TeamDto teamDto) {
         Team team = teamMapper.mapToTeam(teamDto);
         teamDbService.save(team);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamDto) {
+        Team team = teamMapper.mapToTeam(teamDto);
+        Team updatedTeam = teamDbService.save(team);
+        return ResponseEntity.ok(teamMapper.mapToTeamDto(updatedTeam));
     }
 
     @DeleteMapping(value = "{id}")

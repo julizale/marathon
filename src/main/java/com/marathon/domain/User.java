@@ -1,5 +1,6 @@
 package com.marathon.domain;
 
+import com.marathon.domain.enumerated.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

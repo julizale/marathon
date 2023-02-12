@@ -1,4 +1,4 @@
-package com.marathon.domain;
+package com.marathon.domain.enumerated;
 
 public enum Sex {
 

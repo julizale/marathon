@@ -1,6 +1,6 @@
 package com.marathon.domain.dto;
 
-import com.marathon.domain.Sex;
+import com.marathon.domain.enumerated.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

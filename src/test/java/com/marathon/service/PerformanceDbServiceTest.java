@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -21,10 +22,9 @@ public class PerformanceDbServiceTest {
     @Test
     void testDbServiceThrows() {
         //Given
-        when(repository.findAll()).thenReturn(null);
+        when(repository.findById(anyLong())).thenReturn(null);
 
         //When & Then
-        assertThrows(Exception.class, () -> dbService.getPerformanceByUser(120));
-        assertThrows(Exception.class, () -> dbService.getPerformancesByRace(120));
+        assertThrows(Exception.class, () -> dbService.getPerformance(112L));
     }
 }
