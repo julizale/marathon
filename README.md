@@ -1,4 +1,4 @@
-# Marathon Frontend
+# Marathon
 
 ## Table of contents
 * [General Information](#general-information)
