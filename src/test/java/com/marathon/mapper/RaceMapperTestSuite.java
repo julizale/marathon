@@ -1,16 +1,12 @@
 package com.marathon.mapper;
 
-import com.marathon.domain.Activity;
 import com.marathon.domain.Race;
-import com.marathon.domain.User;
-import com.marathon.domain.dto.ActivityDto;
 import com.marathon.domain.dto.RaceDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
