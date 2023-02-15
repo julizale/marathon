@@ -16,6 +16,7 @@ public class UserDbService {
     private UserRepository userRepository;
 
     public User save(User user) throws UserWithGivenEmailExistsException {
+
         if (user.getId() != null && user.getId() == 0 && getAllUsers().stream().anyMatch(u -> u.getEmail().equals(user.getEmail()))) {
             throw new UserWithGivenEmailExistsException();
         }

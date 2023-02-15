@@ -38,4 +38,19 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleUserWithGivenEmailExistsException(UserWithGivenEmailExistsException exception) {
         return new ResponseEntity<>("User with given email already exists", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(FieldMustNotBeNullException.class)
+    public ResponseEntity<Object> handleFieldMustNotBeNullException(FieldMustNotBeNullException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotValidEmailAddressException.class)
+    public ResponseEntity<Object> handleNotValidEmailAddressException(NotValidEmailAddressException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotValidNameException.class)
+    public ResponseEntity<Object> handleNotValidNameException(NotValidNameException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
