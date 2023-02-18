@@ -1,5 +1,6 @@
 package com.marathon.exception;
 
+import io.micrometer.core.instrument.config.validate.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,5 +38,25 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserWithGivenEmailExistsException.class)
     public ResponseEntity<Object> handleUserWithGivenEmailExistsException(UserWithGivenEmailExistsException exception) {
         return new ResponseEntity<>("User with given email already exists", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FieldMustNotBeNullException.class)
+    public ResponseEntity<Object> handleFieldMustNotBeNullException(FieldMustNotBeNullException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotValidEmailAddressException.class)
+    public ResponseEntity<Object> handleNotValidEmailAddressException(NotValidEmailAddressException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotValidNameException.class)
+    public ResponseEntity<Object> handleNotValidNameException(NotValidNameException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Object> handleValidationException(ValidationException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

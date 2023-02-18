@@ -7,6 +7,7 @@ import com.marathon.repository.PerformanceRepository;
 import com.marathon.repository.RaceRepository;
 import com.marathon.service.SimpleEmailService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,7 @@ public class EmailScheduler {
     private final SimpleEmailService simpleEmailService;
     private final PerformanceRepository performanceRepository;
     private final RaceRepository raceRepository;
+    @Autowired
     private AdminConfig adminConfig;
 
     @Scheduled(cron = "0 0 8 * * *")
