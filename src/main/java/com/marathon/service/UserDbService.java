@@ -4,22 +4,32 @@ import com.marathon.domain.User;
 import com.marathon.exception.UserNotFoundException;
 import com.marathon.exception.UserWithGivenEmailExistsException;
 import com.marathon.repository.UserRepository;
+import com.marathon.validator.UserValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserDbService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserValidator userValidator;
 
-    public User save(User user) throws UserWithGivenEmailExistsException {
-
-        if (user.getId() != null && user.getId() == 0 && getAllUsers().stream().anyMatch(u -> u.getEmail().equals(user.getEmail()))) {
-            throw new UserWithGivenEmailExistsException();
+    public User save(User user) throws ValidationException {
+        log.info("Validating user data before saving to database...");
+        try {
+            userValidator.validateUser(user);
+        } catch (Exception e) {
+            log.error("Validation exception: ", e);
+            throw new ValidationException(e);
         }
+        log.info("User saved successfully.");
         return userRepository.save(user);
     }
 

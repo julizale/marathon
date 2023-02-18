@@ -22,7 +22,7 @@ public class MailCreatorService {
 
     public String buildDailyRunnersCountEmail(String message) {
         List<String> functionality = new ArrayList<>();
-        functionality.add("You can administrate your races and runners data.");
+        functionality.add("You can manage your races and runners data.");
         functionality.add("Check history weather for event day.");
 
         Context context = new Context();
@@ -32,7 +32,7 @@ public class MailCreatorService {
         context.setVariable("goodbye_message", "Your Marathon Application");
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
-        return templateEngine.process("mail/daily-task-count-mail", context);
+        return templateEngine.process("mail/daily-mail", context);
     }
 
 }
