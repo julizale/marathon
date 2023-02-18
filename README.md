@@ -14,14 +14,14 @@ There is also the frontend layer, implemented with the Vaadin library.
 
 ## Setup
 - Backend app is deployed to server, so is database with sample data to play with,
-  so you can just launch frontend app. It starts locally on port **8090**
+  so you can just launch frontend app. It starts on local port **8090**
 - link to frontend: [https://github.com/julizale/marathon-frontend](https://github.com/julizale/marathon-frontend)
 
 If for some reason the server is down, you can follow the steps below:
 - configure database connection in backend's `application.properties`
 - change backendUrl in frontend's `application.properties` : `backendUrl=http://localhost:8080/v1/`
 - launch the backend application
-- launch frontend: application starts locally on port **8090**
+- launch frontend: application starts on local port **8090**
 
 
 ## Description
@@ -43,9 +43,9 @@ Entities and related tables are modeled:
 
 In application, there is a scheduler implemented to send a daily e-mail to the administrator
 with information about the number of users registered for races. You may change administrator
-credentials in backend's `application.properties`
+credentials in backend's `application.properties`. The email service uses an html template customized with Thymeleaf variables.
 
-You can explore endpoints with Swagger at address `/swagger-ui/index.html#/`
+You can explore endpoints with Swagger at [https://marathon-prod-marathon-loasf3.mo2.mogenius.io/swagger-ui/index.html#/](https://marathon-prod-marathon-loasf3.mo2.mogenius.io/swagger-ui/index.html#/)
 
 ## Plans for further development
 - user authentication & authorization
