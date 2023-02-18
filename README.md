@@ -17,9 +17,9 @@ There is also the frontend layer, implemented with the Vaadin library.
   so you can just launch frontend app. It starts locally on port **8090**
 - link to frontend: [https://github.com/julizale/marathon-frontend](https://github.com/julizale/marathon-frontend)
 
-if for some reason the server is down, you can follow the steps below:
+If for some reason the server is down, you can follow the steps below:
 - configure database connection in backend's `application.properties`
-- change backendUrl in frontend's `application.properties` : `backendUrl=http://localhost:8080/`
+- change backendUrl in frontend's `application.properties` : `backendUrl=http://localhost:8080/v1/`
 - launch the backend application
 - launch frontend: application starts locally on port **8090**
 
@@ -51,3 +51,7 @@ You can explore endpoints with Swagger at address `/swagger-ui/index.html#/`
 - user authentication & authorization
 - creating a user view
 - recording of events taking place in the system to the database for information purposes
+
+There's still plenty to do, like fixing minor issues, e.g. validating bibNumbers to be unique within one race,
+possibly automating the process of setting bibNumbers, and many more.
+I will gradually introduce changes as time permits.
