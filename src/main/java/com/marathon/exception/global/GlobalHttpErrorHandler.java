@@ -1,5 +1,6 @@
-package com.marathon.exception;
+package com.marathon.exception.global;
 
+import com.marathon.exception.*;
 import io.micrometer.core.instrument.config.validate.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +59,10 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Object> handleValidationException(ValidationException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotValidCodeException.class)
+    public ResponseEntity<Object> handleNotValidCodeException(NotValidCodeException exception) {
+        return new ResponseEntity<>("Not a valid postal code. It should be format 01-234", HttpStatus.BAD_REQUEST);
     }
 }
