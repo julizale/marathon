@@ -20,7 +20,10 @@ class UserDbServiceTest {
     void testDbServiceSave() throws Exception {
         //Given
         User user = new User();
-
+        user.setEmail("test@test.com");
+        user.setFirstName("test");
+        user.setLastName("test");
+        user.setCity("test");
         //When
         dbService.save(user);
         long id = user.getId();
@@ -34,21 +37,21 @@ class UserDbServiceTest {
     void testSaveUserWithIdPresent() throws Exception {
         //Given
         User user = new User();
+        user.setEmail("test@test.com");
+        user.setFirstName("test");
+        user.setLastName("test");
+        user.setCity("test");
         dbService.save(user);
         long id = user.getId();
 
         //When
-        user.setCity("New city");
-        Performance performance = new Performance();
-        user.setPerformance(performance);
-        performance.setUser(user);
-
+        user.setCity("Newtestcity");
         dbService.save(user);
         User retrievedUser = dbService.getUser(id);
 
         //Then
         assertEquals(retrievedUser, user);
-        assertEquals(performance, user.getPerformance());
+        assertEquals("Newtestcity", retrievedUser.getCity());
 
         //CleanUp
         dbService.deleteUser(id);

@@ -1,13 +1,16 @@
-package com.marathon.domain.postal;
+package com.marathon.domain.dto.weather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PostalApiAnswer {
+public class WeatherDto {
 
-    @JsonProperty("miejscowosc")
-    private String miejscowosc;
+    @JsonProperty("days")
+    private List<WeatherDayDto> days;
+
 }
