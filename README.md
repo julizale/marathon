@@ -35,7 +35,7 @@ The backend application includes database support, and a REST API providing endp
 Entities and related tables are modeled:
 - User – representing users, along with their personal data.
 - Race - there may be several races at different distances within the sporting event.
-- Team - optionally, the user can belong to a team of runners.
+- Team - optionally, the user may belong to a team of runners.
 - Performance - connecting the user with a specific race (one user may take part in one race).
   Creating a performance is equivalent to signing up a user for a race.
   After paying for the event (payment made outside the website) administrator should give the user a starting number (bibNumber).
@@ -45,7 +45,12 @@ In application, there is a scheduler implemented to send a daily e-mail to the a
 with information about the number of users registered for races. You may change administrator
 credentials in backend's `application.properties`. The email service uses an html template customized with Thymeleaf variables.
 
+<<<<<<< HEAD
 You can explore endpoints with Swagger at [https://marathon-prod-marathon-loasf3.mo2.mogenius.io/swagger-ui/index.html#/](https://marathon-prod-marathon-loasf3.mo2.mogenius.io/swagger-ui/index.html#/)
+=======
+You can explore endpoints with Swagger at address [https://marathon-prod-marathon-loasf3.mo2.mogenius.io/swagger-ui/index.html#/](https://marathon-prod-marathon-loasf3.mo2.mogenius.io/swagger-ui/index.html#/)
+
+There's Spring actuator enabled, so you can view info about application at [https://marathon-prod-marathon-loasf3.mo2.mogenius.io/actuator/](https://marathon-prod-marathon-loasf3.mo2.mogenius.io/actuator/)
 
 ## Plans for further development
 - user authentication & authorization

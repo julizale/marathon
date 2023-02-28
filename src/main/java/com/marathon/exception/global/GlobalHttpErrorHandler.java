@@ -1,6 +1,6 @@
-package com.marathon.exception;
+package com.marathon.exception.global;
 
-import io.micrometer.core.instrument.config.validate.ValidationException;
+import com.marathon.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -59,4 +59,5 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleValidationException(ValidationException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
 }

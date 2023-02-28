@@ -6,7 +6,6 @@ import com.marathon.exception.NotValidEmailAddressException;
 import com.marathon.exception.NotValidNameException;
 import com.marathon.exception.UserWithGivenEmailExistsException;
 import com.marathon.repository.UserRepository;
-import com.marathon.service.UserDbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
