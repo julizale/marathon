@@ -1,51 +1,51 @@
 package com.marathon.domain;
 
 import com.marathon.domain.enumerated.StartStatus;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "PERFORMANCES")
+@Entity(name = "performances")
 public class Performance {
 
     @Id
     @NotNull
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "performance_id")
     private Long id;
 
     @OneToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
             CascadeType.REFRESH},
             fetch = FetchType.EAGER
     )
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
             CascadeType.REFRESH})
-    @JoinColumn(name = "RACE_ID")
+    @JoinColumn(name = "race_id")
     private Race race;
 
-    @Column(name = "PAID")
+    @Column(name = "paid")
     private boolean paid;
 
-    @Column(name = "BIB_NUMBER")
+    @Column(name = "bibnumber")
     private int bibNumber;
 
-    @Column(name = "STATUS")
+    @Column(name = "status")
     private StartStatus status;
 
-    @Column(name = "TIME_GROSS")
+    @Column(name = "timegross")
     private BigDecimal timeGross;
 
-    @Column(name = "TIME_NET")
+    @Column(name = "timenet")
     private BigDecimal timeNet;
 
 }

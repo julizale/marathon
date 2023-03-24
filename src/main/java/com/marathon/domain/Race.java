@@ -1,11 +1,11 @@
 package com.marathon.domain;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,25 +13,25 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "RACES")
+@Entity(name = "races")
 public class Race {
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "race_id")
     private Long id;
 
     @NotNull
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
 
     @NotNull
-    @Column(name = "DISTANCE")
-    private long distance;
+    @Column(name = "distance")
+    private Long distance;
 
     @NotNull
-    @Column(name = "PRICE")
+    @Column(name = "price")
     private BigDecimal price;
 
     @OneToMany(

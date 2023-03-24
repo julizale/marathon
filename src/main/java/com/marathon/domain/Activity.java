@@ -1,11 +1,11 @@
 package com.marathon.domain;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -17,17 +17,17 @@ public class Activity {
     @Id
     @NotNull
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "activity_id")
     private Long id;
 
-    @Column(name = "DATE_TIME")
+    @Column(name = "datetime")
     private LocalDateTime dateTime;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "LOG")
+    @Column(name = "log")
     private String log;
 
 }
