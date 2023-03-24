@@ -38,20 +38,18 @@ public class ProjectSecurityConfig {
                         return config;
                     }
                 })
-                .and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/contact","/register")
+                .and().csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/v1/list","/v1/register", "/swagger-ui/index.html#")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                /*.requestMatchers("/myAccount").hasAuthority("VIEWACCOUNT")
-                .requestMatchers("/myBalance").hasAnyAuthority("VIEWACCOUNT","VIEWBALANCE")
-                .requestMatchers("/myLoans").hasAuthority("VIEWLOANS")
-                .requestMatchers("/myCards").hasAuthority("VIEWCARDS")*/
-                .requestMatchers("/myAccount").hasRole("USER")
-                .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
-                .requestMatchers("/myLoans").hasRole("USER")
-                .requestMatchers("/myCards").hasRole("USER")
-                .requestMatchers("/user").authenticated()
-                .requestMatchers("/notices","/contact","/register").permitAll()
+                .requestMatchers("/v1/activity").hasRole("ADMIN")
+                .requestMatchers("/v1/performance").hasRole("ADMIN")
+                .requestMatchers("/v1/user").hasRole("ADMIN")
+                .requestMatchers("/v1/race").hasAnyRole("USER","ADMIN")
+                .requestMatchers("/v1/team").hasAnyRole("USER","ADMIN")
+                .requestMatchers("/v1/list").hasAnyRole("USER","ADMIN")
+                .requestMatchers("/v1/login").authenticated()
+                .requestMatchers("/v1/list","/v1/race","/v1/weather", "/v1/postal", "/v1/register", "/swagger-ui/index.html#").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();

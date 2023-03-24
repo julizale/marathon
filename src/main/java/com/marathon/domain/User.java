@@ -41,9 +41,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "create_dt")
-    private String createDt;
-
     @Column(name = "sex")
     private Sex sex;
 
@@ -69,4 +66,17 @@ public class User {
     @OneToMany(mappedBy="user",fetch=FetchType.EAGER)
     private Set<Authority> authorities;
 
+    public User(Long id, String email, String firstName, String lastName, LocalDate birthDate, String password, Sex sex, String city, Team team, Performance performance, List<Activity> activityList) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.password = password;
+        this.sex = sex;
+        this.city = city;
+        this.team = team;
+        this.performance = performance;
+        this.activityList = activityList;
+    }
 }

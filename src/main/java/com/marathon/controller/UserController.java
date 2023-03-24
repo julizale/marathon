@@ -3,7 +3,7 @@ package com.marathon.controller;
 import com.marathon.domain.User;
 import com.marathon.domain.dto.UserDto;
 import com.marathon.exception.UserNotFoundException;
-import com.marathon.exception.UserWithGivenEmailExistsException;
+import com.marathon.exception.ValidationException;
 import com.marathon.mapper.UserMapper;
 import com.marathon.service.UserDbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @RestController

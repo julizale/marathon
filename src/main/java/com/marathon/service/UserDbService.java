@@ -2,14 +2,13 @@ package com.marathon.service;
 
 import com.marathon.domain.User;
 import com.marathon.exception.UserNotFoundException;
-import com.marathon.exception.UserWithGivenEmailExistsException;
+import com.marathon.exception.ValidationException;
 import com.marathon.repository.UserRepository;
 import com.marathon.validator.UserValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @Service
@@ -27,7 +26,7 @@ public class UserDbService {
             userValidator.validateUser(user);
         } catch (Exception e) {
             log.error("Validation exception: ", e);
-            throw new ValidationException(e);
+            throw new ValidationException(e.getMessage());
         }
         log.info("User saved successfully.");
         return userRepository.save(user);

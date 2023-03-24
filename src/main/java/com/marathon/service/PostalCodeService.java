@@ -2,6 +2,7 @@ package com.marathon.service;
 
 import com.marathon.config.ApiConfig;
 import com.marathon.domain.dto.postal.PostalApiAnswerDto;
+import com.marathon.exception.ValidationException;
 import com.marathon.validator.PostalCodeValidator;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.bind.ValidationException;
 import java.util.Objects;
 
 @Service

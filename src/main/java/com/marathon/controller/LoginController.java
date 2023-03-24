@@ -24,14 +24,13 @@ public class LoginController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/register")
+    @PostMapping("/v1/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         User savedUser;
         ResponseEntity<String> response = null;
         try {
             String hashPwd = passwordEncoder.encode(user.getPassword());
             user.setPassword(hashPwd);
-            user.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
             savedUser = userRepository.save(user);
             if (savedUser.getId() > 0) {
                 response = ResponseEntity
@@ -46,7 +45,7 @@ public class LoginController {
         return response;
     }
 
-    @RequestMapping("/user")
+    @RequestMapping("/v1/login")
     public User getUserDetailsAfterLogin(Authentication authentication) {
         List<User> users = userRepository.findByEmail(authentication.getName());
         if (users.size() > 0) {
