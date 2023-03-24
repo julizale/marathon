@@ -1,8 +1,6 @@
 package com.marathon;
 
-import com.marathon.domain.Activity;
 import com.marathon.domain.Team;
-import com.marathon.repository.ActivityRepository;
 import com.marathon.repository.TeamRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ public class TeamTestSuite {
     private TeamRepository teamRepository;
 
     @Test
-    void testActivityRepositoryFindById() {
+    void testTeamRepositoryFindById() {
         //Given
         Team team = new Team();
         teamRepository.save(team);
@@ -39,7 +37,7 @@ public class TeamTestSuite {
     }
 
     @Test
-    void testActivityRepositorySave() {
+    void testTeamRepositorySave() {
         //Given
         Team team = new Team();
 
@@ -54,7 +52,7 @@ public class TeamTestSuite {
     }
 
     @Test
-    void testActivityRepositoryFindAll() {
+    void testTeamRepositoryFindAll() {
         //Given
         Team team1 = new Team();
         Team team2 = new Team();
